@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,11 @@ namespace DevIO.Api
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
+
+            services.Configure<ApiBehaviorOptions>(op =>
+            {
+                op.SuppressModelStateInvalidFilter = true;
+            });
 
             services.ResolveDependencies();
         }
