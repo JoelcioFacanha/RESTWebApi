@@ -8,7 +8,7 @@ using DevIO.Data.Context;
 using DevIO.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace DevIO.Data.Repository
+namespace DevIO.Data.Repositories
 {
     public class ProdutoRepository : Repository<Produto>, IProdutoRepository
     {
