@@ -21,7 +21,7 @@ namespace DevIO.Api.ViewModels
 
         public string ImagemUpload { get; set; }
 
-        public string Imagem { get; set; }
+        public byte[] Imagem { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public decimal Valor { get; set; }
