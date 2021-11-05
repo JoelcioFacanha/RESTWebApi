@@ -1,21 +1,12 @@
 using DevIO.Api.Configurations;
-using DevIO.Business.Interfaces.Repositories;
 using DevIO.Data.Context;
-using DevIO.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DevIO.Api
 {
@@ -38,11 +29,18 @@ namespace DevIO.Api
 
             services.AddAutoMapper(typeof(Startup));
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.Configure<ApiBehaviorOptions>(op =>
             {
                 op.SuppressModelStateInvalidFilter = true;
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Development", builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             });
 
             services.ResolveDependencies();
@@ -56,6 +54,7 @@ namespace DevIO.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("Development");
             app.UseHttpsRedirection();
 
             app.UseRouting();

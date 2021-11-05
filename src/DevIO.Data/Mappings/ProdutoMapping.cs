@@ -23,8 +23,7 @@ namespace DevIO.Data.Mappings
                 .HasColumnType("varchar(100)");
 
             builder.Property(p => p.Valor)
-               .IsRequired()
-               .HasColumnType("decimal(18,2)");
+                .HasColumnType("decimal(18,2)");
 
             builder.ToTable("Produtos");
         }
