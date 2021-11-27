@@ -10,15 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DevIO.Data.Migrations
 {
     [DbContext(typeof(MeuDbContext))]
-    [Migration("20211105145946_PrecisionValorProduto")]
-    partial class PrecisionValorProduto
+    [Migration("20211125155909_Intial_DB")]
+    partial class Intial_DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("ProductVersion", "3.1.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DevIO.Business.Models.Endereco", b =>
@@ -133,8 +133,6 @@ namespace DevIO.Data.Migrations
                         .WithOne("Endereco")
                         .HasForeignKey("DevIO.Business.Models.Endereco", "FornecedorId")
                         .IsRequired();
-
-                    b.Navigation("Fornecedor");
                 });
 
             modelBuilder.Entity("DevIO.Business.Models.Produto", b =>
@@ -143,15 +141,6 @@ namespace DevIO.Data.Migrations
                         .WithMany("Produtos")
                         .HasForeignKey("FornecedorId")
                         .IsRequired();
-
-                    b.Navigation("Fornecedor");
-                });
-
-            modelBuilder.Entity("DevIO.Business.Models.Fornecedor", b =>
-                {
-                    b.Navigation("Endereco");
-
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

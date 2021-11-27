@@ -26,6 +26,8 @@ namespace DevIO.Api
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            services.AddIdentityConfiguration(Configuration);
+
             services.WebApiConfig();
 
             services.ResolveDependencies();
@@ -39,6 +41,7 @@ namespace DevIO.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvcConfiguration();
         }
     }

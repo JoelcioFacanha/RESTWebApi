@@ -13,8 +13,6 @@ namespace DevIO.Api.Configurations
     {
         public static IServiceCollection ResolveDependencies(this IServiceCollection services)
         {
-            services.AddScoped<MeuDbContext>();
-
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
